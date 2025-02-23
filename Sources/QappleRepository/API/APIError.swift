@@ -10,6 +10,9 @@ import Foundation
 /// Repository 에러 열거형
 enum APIError: Error {
     
+    /// 유효하지 않은 SecretKey 에러
+    case invalidSecretKey(String)
+    
     /// 기본 URL 에러
     case invalidBaseUrl(String)
 }

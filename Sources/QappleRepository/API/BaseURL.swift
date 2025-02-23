@@ -20,12 +20,12 @@ enum BaseURL {
     }
     
     /// 기본 URL을 받아옵니다.
-    static func fetch(from server: Server) -> String {
+    static func fetch(from server: Server) throws -> String {
         guard let host = ProcessInfo.processInfo.environment[serverKey(server)] else {
-            return "HOST_URL_ERROR"
+            throw APIError.invalidSecretKey("HOST_URL_\(server.rawValue.uppercased())")
         }
         guard let port = ProcessInfo.processInfo.environment["PORT_NUM"] else {
-            return "PORT_NUM_ERROR"
+            throw APIError.invalidSecretKey("PORT_NUM")
         }
         return "\(scheme)://\(host):\(port)"
     }

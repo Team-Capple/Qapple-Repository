@@ -49,7 +49,7 @@ extension RawRepresentable where RawValue == String, Self: API {
     
     /// 원시값을 이용해 URL 타입으로 변환 후 반환합니다.
     func url(from server: Server) throws -> URL {
-        let baseURLString = BaseURL.fetch(from: server)
+        let baseURLString = try BaseURL.fetch(from: server)
         guard let baseURL = URL(string: baseURLString)?
             .appendingPathComponent(Self.basePath) else {
             throw APIError.invalidBaseUrl("BaseURL Error: \(baseURLString)")
