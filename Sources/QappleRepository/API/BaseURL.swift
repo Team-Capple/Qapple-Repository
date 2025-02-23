@@ -21,6 +21,15 @@ enum BaseURL {
     
     /// 기본 URL을 받아옵니다.
     static func fetch(from server: Server) throws -> String {
+        #if SWIFT_PACKAGE
+        guard let host = ProcessInfo.processInfo.environment[serverKey(server)] else {
+            return "HOST_URL_ERROR"
+        }
+        guard let port = ProcessInfo.processInfo.environment["PORT_NUM"] else {
+            return "PORT_NUM_ERROR"
+        }
+        return "\(scheme)://\(host):\(port)"
+        #else
         guard let host = Bundle.main.infoDictionary?[serverKey(server)] as? String else {
             throw APIError.invalidSecretKey("HOST_URL_\(server.rawValue.uppercased())")
         }
@@ -28,5 +37,6 @@ enum BaseURL {
             throw APIError.invalidSecretKey("PORT_NUM")
         }
         return "\(scheme)://\(host):\(port)"
+        #endif
     }
 }

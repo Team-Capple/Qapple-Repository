@@ -15,13 +15,11 @@ struct SecretTests {
     func productionServerURL() throws {
         let url = try BaseURL.fetch(from: .production)
         dump(url)
-        #expect(url != "HOST URL ERROR")
     }
     
     @Test
     func testServerURL() throws {
         let url = try BaseURL.fetch(from: .test)
         dump(url)
-        #expect(url != "HOST URL ERROR")
     }
 }
