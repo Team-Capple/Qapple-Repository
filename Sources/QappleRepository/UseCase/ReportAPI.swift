@@ -8,7 +8,7 @@
 import Foundation
 
 /// 신고 API입니다.
-enum ReportAPI: Sendable {
+public enum ReportAPI: Sendable {
     
     /// 답변 신고 API입니다.
     public static func reportAnswer(

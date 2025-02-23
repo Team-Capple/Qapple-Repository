@@ -13,7 +13,7 @@ import Foundation
 public enum QuestionAPI: Sendable {
     /// 질문 목록을 불러오는 API 입니다.
     public static func fetchQuestionList(
-        threshold: Int?,
+        threshold: String?,
         pageSize: Int,
         server: Server,
         accessToken: String

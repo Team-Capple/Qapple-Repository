@@ -18,7 +18,7 @@ struct AdminQuestionAPITests {
             questionStatus: .pending,
             content: "테스트 질문입니다!",
             server: .test,
-            accessToken: TestHelper.shared.testToken()
+            accessToken: TestHelper.accessToken()
         )
         
         dump(response)
@@ -26,7 +26,7 @@ struct AdminQuestionAPITests {
     
     @Test("Admin 질문 삭제 테스트")
     func deleteQuestion() async throws {
-        let token = try await TestHelper.shared.testToken()
+        let token = try await TestHelper.accessToken()
         let createResponse = try await AdminQuestionAPI.createQuestion(
             questionStatus: .pending,
             content: "테스트 질문입니다!",

@@ -13,7 +13,7 @@ struct BoardAPITests {
     
     @Test("게시글 리스트 조회 테스트")
     func fetchList() async throws {
-        let accessToken = try await TestHelper.shared.testToken()
+        let accessToken = try await TestHelper.accessToken()
         let response = try await BoardAPI.fetchList(
             threshold: nil,
             pageSize: 30,
@@ -25,7 +25,7 @@ struct BoardAPITests {
     
     @Test("게시글 생성 테스트")
     func create() async throws {
-        let accessToken = try await TestHelper.shared.testToken()
+        let accessToken = try await TestHelper.accessToken()
         let response = try await BoardAPI.create(
             content: "테스트 게시글",
             boardType: .freeBoard,
@@ -37,7 +37,7 @@ struct BoardAPITests {
     
     @Test("게시글 단건 조회 테스트")
     func fetchSingle() async throws {
-        let accessToken = try await TestHelper.shared.testToken()
+        let accessToken = try await TestHelper.accessToken()
         let response = try await BoardAPI.fetchSingle(
             boardId: 1,
             server: .test,
@@ -48,7 +48,7 @@ struct BoardAPITests {
     
     @Test("게시글 삭제 테스트")
     func delete() async throws {
-        let accessToken = try await TestHelper.shared.testToken()
+        let accessToken = try await TestHelper.accessToken()
         let create = try await BoardAPI.create(
             content: "테스트 게시글",
             boardType: .freeBoard,
@@ -65,9 +65,9 @@ struct BoardAPITests {
     
     @Test("게시글 좋아요 및 취소 테스트")
     func like() async throws {
-        let accessToken = try await TestHelper.shared.testToken()
+        let accessToken = try await TestHelper.accessToken()
         let response = try await BoardAPI.like(
-            request: .init(boardId: 1),
+            boardId: 1,
             server: .test,
             accessToken: accessToken
         )
@@ -76,7 +76,7 @@ struct BoardAPITests {
     
     @Test("게시글 검색 테스트")
     func search() async throws {
-        let accessToken = try await TestHelper.shared.testToken()
+        let accessToken = try await TestHelper.accessToken()
         let response = try await BoardAPI.search(
             keyword: "ㅇ",
             threshold: nil,

@@ -13,7 +13,7 @@ struct BoardCommentAPITests {
     
     @Test("게시글 댓글 리스트 조회 테스트")
     func fetchList() async throws {
-        let accessToken = try await TestHelper.shared.testToken()
+        let accessToken = try await TestHelper.accessToken()
         let response = try await BoardCommentAPI.fetchList(
             boardId: 1,
             threshold: nil,
@@ -26,7 +26,7 @@ struct BoardCommentAPITests {
     
     @Test("게시글 댓글 생성 테스트")
     func create() async throws {
-        let accessToken = try await TestHelper.shared.testToken()
+        let accessToken = try await TestHelper.accessToken()
         let response = try await BoardCommentAPI.create(
             boardId: 1,
             content: "테스트 댓글",
@@ -38,7 +38,7 @@ struct BoardCommentAPITests {
     
     @Test("게시글 댓글 삭제 테스트")
     func delete() async throws {
-        let accessToken = try await TestHelper.shared.testToken()
+        let accessToken = try await TestHelper.accessToken()
         // 댓글 생성
         let createComment = try await BoardCommentAPI.create(
             boardId: 1,
@@ -57,7 +57,7 @@ struct BoardCommentAPITests {
     
     @Test("게시글 댓글 좋아요 및 취소 테스트")
     func like() async throws {
-        let accessToken = try await TestHelper.shared.testToken()
+        let accessToken = try await TestHelper.accessToken()
         // 댓글 생성
         let createComment = try await BoardCommentAPI.create(
             boardId: 1,

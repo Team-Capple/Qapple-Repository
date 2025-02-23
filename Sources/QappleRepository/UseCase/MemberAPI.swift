@@ -44,11 +44,19 @@ public enum MemberAPI: Sendable {
     
     /// 회원가입 API 입니다.
     public static func signUp(
-        request: SignUpRequest,
+        signUpToken: String,
+        email: String,
+        nickname: String,
+        deviceToken: String,
         server: Server
     ) async throws -> SignUp {
         let url = try QappleAPI.Member.signUp.url(from: server)
-        
+        let request = SignUpRequest(
+            signUpToken: signUpToken,
+            email: email,
+            nickname: nickname,
+            deviceToken: deviceToken
+        )
         return try await NetworkService.post(
             url: url,
             body: request

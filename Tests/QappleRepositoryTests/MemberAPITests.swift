@@ -29,12 +29,10 @@ struct MemberAPITests {
             server: .test
         ).refreshToken
         let response = try await MemberAPI.signUp(
-            request: .init(
-                signUpToken: refreshToken,
-                email: "email",
-                nickname: "nickname",
-                deviceToken: "deviceToken"
-            ),
+            signUpToken: refreshToken,
+            email: "email",
+            nickname: "nickname",
+            deviceToken: "deviceToken",
             server: .test
         )
         dump(response)
@@ -73,7 +71,7 @@ struct MemberAPITests {
     
     @Test("닉네임 중복 확인 테스트")
     func checkNicknameDuplicate() async throws {
-        let accessToken = try await TestHelper.shared.testToken()
+        let accessToken = try await TestHelper.accessToken()
         let response = try await MemberAPI.checkNicknameDuplicate(
             nickname: "TestUser",
             server: .test,
@@ -84,7 +82,7 @@ struct MemberAPITests {
     
     @Test("프로필 조회 테스트")
     func fetchProfile() async throws {
-        let accessToken = try await TestHelper.shared.testToken()
+        let accessToken = try await TestHelper.accessToken()
         let response = try await MemberAPI.fetchProfile(
             server: .test,
             accessToken: accessToken
@@ -94,7 +92,7 @@ struct MemberAPITests {
     
     @Test("프로필 수정 테스트")
     func updateProfile() async throws {
-        let accessToken = try await TestHelper.shared.testToken()
+        let accessToken = try await TestHelper.accessToken()
         let response = try await MemberAPI.updateProfile(
             nickname: "User\(Int.random(in: 1...100))",
             profileImage: nil,
@@ -106,7 +104,7 @@ struct MemberAPITests {
     
     @Test("회원탈퇴 테스트")
     func resign() async throws {
-        let accessToken = try await TestHelper.shared.testToken()
+        let accessToken = try await TestHelper.accessToken()
         let response = try await MemberAPI.resign(
             server: .test,
             accessToken: accessToken

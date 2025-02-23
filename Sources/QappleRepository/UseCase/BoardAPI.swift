@@ -62,11 +62,12 @@ public enum BoardAPI {
     
     /// 게시글 좋아요 및 취소 API입니다.
     public static func like(
-        request: LikeBoardRequest,
+        boardId: Int,
         server: Server,
         accessToken: String
     ) async throws -> LikeBoard {
-        let url = try QappleAPI.Board.like(boardId: Int64(request.boardId)).url(from: server)
+        let url = try QappleAPI.Board.like(boardId: Int64(boardId)).url(from: server)
+        let request = LikeBoardRequest(boardId: boardId)
         return try await NetworkService.post(url: url, body: request, accessToken: accessToken)
     }
     

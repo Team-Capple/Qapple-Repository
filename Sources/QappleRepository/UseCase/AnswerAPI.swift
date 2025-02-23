@@ -52,13 +52,14 @@ public enum AnswerAPI: Sendable {
     
     /// 답변 생성 API 입니다.
     public static func create(
-        request: CreateAnswerRequest,
+        content: String,
         questionId: Int,
         server: Server,
         accessToken: String
     ) async throws -> CreateAnswer {
         let url = try QappleAPI.Answer.create(questionId: Int64(questionId))
             .url(from: server)
+        let request = CreateAnswerRequest(answer: content)
         return try await NetworkService.post(
             url: url,
             body: request,

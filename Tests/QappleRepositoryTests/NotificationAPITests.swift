@@ -18,7 +18,7 @@ struct NotificationAPITests {
             threshold: nil,
             pageSize: 25,
             server: .test,
-            accessToken: TestHelper.shared.testToken()
+            accessToken: TestHelper.accessToken()
         )
         
         dump(response)

@@ -206,7 +206,7 @@ enum QappleAPI {
         case listOfMain
       
         /// 모든 질문 조회
-        case list(threshold: Int?, pageSize: Int32 = 25)
+        case list(threshold: String?, pageSize: Int32 = 25)
         
         var rawValue: RawValue {
             switch self {
