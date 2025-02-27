@@ -52,10 +52,10 @@ extension RawRepresentable where RawValue == String, Self: API {
         let baseURLString = try BaseURL.fetch(from: server)
         guard let baseURL = URL(string: baseURLString)?
             .appendingPathComponent(Self.basePath) else {
-            throw APIError.invalidBaseUrl("BaseURL Error: \(baseURLString)")
+            throw RepositoryError.invalidBaseUrl("BaseURL Error: \(baseURLString)")
         }
         guard let url = URL(string: baseURL.absoluteString + rawValue) else {
-            throw APIError.invalidBaseUrl("RawValue Error: \(rawValue)")
+            throw RepositoryError.invalidBaseUrl("RawValue Error: \(rawValue)")
         }
         return url
     }
