@@ -91,6 +91,9 @@ enum QappleAPI {
         /// 회원가입
         case signUp
         
+        /// 사용자 자격 변경
+        case roleChange(role: String)
+        
         var rawValue: RawValue {
             switch self {
             case let .certification(signUpToken, email):
@@ -139,9 +142,13 @@ enum QappleAPI {
                 
             case .signUp:
                 appending(baseString: "sign-up")
+                
+            case let .roleChange(role):
+                appending(baseString: "role/change", urlQueryItems: [
+                    .init(key: "role", value: role)
+                ])
             }
         }
-        
     }
     
     // MARK: - Board

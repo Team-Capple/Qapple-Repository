@@ -158,4 +158,14 @@ public enum MemberAPI: Sendable {
             accessToken: accessToken
         )
     }
+    
+    /// 사용자 자격 변경 API 입니다.
+    public static func roleChange(
+        role: MemberRole,
+        server: Server,
+        accessToken: String
+    ) async throws -> RoleChange {
+        let url = try QappleAPI.Member.roleChange(role: role.rawValue).url(from: server)
+        return try await NetworkService.get(url: url, accessToken: accessToken)
+    }
 }
