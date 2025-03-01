@@ -168,4 +168,18 @@ public enum MemberAPI: Sendable {
         let url = try QappleAPI.Member.roleChange(role: role.rawValue).url(from: server)
         return try await NetworkService.get(url: url, accessToken: accessToken)
     }
+    
+    /// 메일 인증 화이트 리스트 등록 API 입니다.
+    public static func emailWhitelist(
+        email: String,
+        durationMinutes: Int,
+        server: Server,
+        accessToken: String
+    ) async throws -> Bool {
+        let url = try QappleAPI.Member.emailWhitelist(
+            mail: email,
+            whitelistDurationMinutes: Int64(durationMinutes)
+        ).url(from: server)
+        return try await NetworkService.get(url: url, accessToken: accessToken)
+    }
 }

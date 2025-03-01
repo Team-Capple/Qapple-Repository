@@ -50,9 +50,14 @@ struct ReportTests {
     @Test("게시글 댓글 신고 테스트")
     func reportBoardComment() async throws {
         let accessToken = try await TestHelper.accessToken()
-        // TODO: 테스트 댓글 API 연결 필요
+        let _ = try await BoardCommentAPI.create(
+            boardId: 1,
+            content: "테스트 댓글",
+            server: .test,
+            accessToken: accessToken
+        )
         let response = try await ReportAPI.reportBoardComment(
-            boardCommentId: 0,
+            boardCommentId: 1,
             reportType: .DISTRIBUTION_OF_ILLEGAL_PHOTOGRAPHS,
             server: .test,
             accessToken: accessToken

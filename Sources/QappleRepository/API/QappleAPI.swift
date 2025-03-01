@@ -94,6 +94,9 @@ enum QappleAPI {
         /// 사용자 자격 변경
         case roleChange(role: String)
         
+        /// 메일 인증 화이트 리스트 등록
+        case emailWhitelist(mail: String, whitelistDurationMinutes: Int64)
+        
         var rawValue: RawValue {
             switch self {
             case let .certification(signUpToken, email):
@@ -146,6 +149,12 @@ enum QappleAPI {
             case let .roleChange(role):
                 appending(baseString: "role/change", urlQueryItems: [
                     .init(key: "role", value: role)
+                ])
+                
+            case let .emailWhitelist(mail, whitelistDurationMinutes):
+                appending(baseString: "email/whitelist/register", urlQueryItems: [
+                    .init(key: "mail", value: mail),
+                    .init(key: "whitelistDurationMinutes", value: whitelistDurationMinutes)
                 ])
             }
         }
