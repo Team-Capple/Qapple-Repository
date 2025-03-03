@@ -32,17 +32,13 @@ struct QuestionAPITests {
             
             #expect(response.content.first!.questionId != pagination.content.first!.questionId)
         }
-        
-        dump(response)
     }
     
     @Test("메인 질문 조회 테스트")
     func fetchMainQuestion() async throws {
-        let response = try await QuestionAPI.fetchMainQuestion(
+        let _ = try await QuestionAPI.fetchMainQuestion(
             server: .test,
             accessToken: TestHelper.accessToken()
         )
-        
-        dump(response)
     }
 }

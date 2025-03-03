@@ -20,13 +20,12 @@ struct ReportTests {
             server: .test,
             accessToken: accessToken
         )
-        let response = try await ReportAPI.reportAnswer(
+        let _ = try await ReportAPI.reportAnswer(
             answerId: createAnswer.answerId,
             reportType: .ABUSIVE_LANGUAGE_AND_DISPARAGEMENT,
             server: .test,
             accessToken: accessToken
         )
-        dump(response)
     }
     
     @Test("게시글 신고 테스트")
@@ -38,13 +37,12 @@ struct ReportTests {
             server: .test,
             accessToken: accessToken
         )
-        let response = try await ReportAPI.reportBoard(
+        let _ = try await ReportAPI.reportBoard(
             boardId: createBoard.boardId,
             reportType: .COMMERCIAL_ADVERTISING_AND_SALES,
             server: .test,
             accessToken: accessToken
         )
-        dump(response)
     }
     
     @Test("게시글 댓글 신고 테스트")
@@ -56,12 +54,11 @@ struct ReportTests {
             server: .test,
             accessToken: accessToken
         )
-        let response = try await ReportAPI.reportBoardComment(
+        let _ = try await ReportAPI.reportBoardComment(
             boardCommentId: 1,
             reportType: .DISTRIBUTION_OF_ILLEGAL_PHOTOGRAPHS,
             server: .test,
             accessToken: accessToken
         )
-        dump(response)
     }
 }
