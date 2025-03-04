@@ -19,6 +19,7 @@ public struct SearchBoard: Decodable, Sendable {
         public let boardId: Int
         public let writerId: Int
         public let writerNickname: String
+        public let writerGeneration: String
         public let content: String
         public let heartCount: Int
         public let commentCount: Int
