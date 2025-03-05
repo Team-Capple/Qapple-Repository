@@ -13,7 +13,7 @@ enum TestHelper {
     /// 테스트 토큰을 발급합니다.
     static func accessToken() async throws -> String {
         let localSignIn = try await MemberAPI.localSignIn(
-            testId: "TEST_ID_\(Date.now.description)",
+            testId: "TEST_ID_\(UUID())",
             deviceToken: "TEST_DEVICE_TOKEN",
             server: .test
         )

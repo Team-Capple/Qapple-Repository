@@ -21,7 +21,9 @@ public struct NotificationList: Decodable, Sendable {
         public let subtitle: String?
         public let content: String?
         public let boardId: String?
+        public let isReportedBoard: Bool?
         public let questionId: String?
+        public let isResponsedQuestion: Bool?
         public let boardCommentId: String?
         public let createdAt: String
     }

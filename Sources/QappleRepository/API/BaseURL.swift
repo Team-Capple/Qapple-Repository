@@ -25,18 +25,18 @@ enum BaseURL {
     static func fetch(from server: Server) throws -> String {
         if Bundle.main == Bundle(for: PackageClass.self) {
             guard let host = Bundle.main.infoDictionary?[serverKey(server)] as? String else {
-                throw APIError.invalidSecretKey("HOST_URL_\(server.rawValue.uppercased())")
+                throw RepositoryError.invalidSecretKey("HOST_URL_\(server.rawValue.uppercased())")
             }
             guard let port = Bundle.main.infoDictionary?["PORT_NUM"] as? String else {
-                throw APIError.invalidSecretKey("PORT_NUM")
+                throw RepositoryError.invalidSecretKey("PORT_NUM")
             }
             return "\(scheme)://\(host):\(port)"
         } else {
             guard let host = ProcessInfo.processInfo.environment[serverKey(server)] else {
-                throw APIError.invalidSecretKey("HOST_URL_\(server.rawValue.uppercased())")
+                throw RepositoryError.invalidSecretKey("HOST_URL_\(server.rawValue.uppercased())")
             }
             guard let port = ProcessInfo.processInfo.environment["PORT_NUM"] else {
-                throw APIError.invalidSecretKey("PORT_NUM")
+                throw RepositoryError.invalidSecretKey("PORT_NUM")
             }
             return "\(scheme)://\(host):\(port)"
         }

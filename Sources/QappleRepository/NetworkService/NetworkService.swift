@@ -80,7 +80,7 @@ extension NetworkService {
             
             return try await URLSession.shared.data(for: request)
         } catch {
-            throw NetworkError.urlRequestFailure(urlString: url.absoluteString)
+            throw RepositoryError.urlRequestFailure(urlString: url.absoluteString)
         }
     }
     
@@ -127,13 +127,13 @@ extension NetworkService {
         let successStatusCodeRange = 200...299
         guard successStatusCodeRange.contains(statusCode) else {
             if statusCode == 403 {
-                throw NetworkError.authenticationFailed
+                throw RepositoryError.authenticationFailed
             } else {
                 let failedResponse = try? decoder.decode(
-                    NetworkError.FailedResponse.self,
+                    RepositoryError.FailedResponse.self,
                     from: data
                 )
-                throw NetworkError.invalidResponse(
+                throw RepositoryError.invalidResponse(
                     urlString: response.url?.absoluteString ?? "",
                     statusCode: statusCode,
                     message: failedResponse?.message ?? "에러 메시지 없음"
@@ -156,7 +156,7 @@ extension NetworkService {
             )
             return decodedData.result
         } catch {
-            throw NetworkError.decodingFailure(type: T.self)
+            throw RepositoryError.decodingFailure(type: T.self)
         }
     }
 }

@@ -14,11 +14,12 @@ struct QuestionAPITests {
     
     @Test("질문 리스트 조회 테스트")
     func fetchQuestions() async throws {
+        let accessToken = try await TestHelper.accessToken()
         let response = try await QuestionAPI.fetchQuestionList(
             threshold: nil,
             pageSize: 25,
             server: .test,
-            accessToken: TestHelper.accessToken()
+            accessToken: accessToken
         )
         
         if response.hasNext {
@@ -26,22 +27,18 @@ struct QuestionAPITests {
                 threshold: response.threshold,
                 pageSize: 25,
                 server: .test,
-                accessToken: TestHelper.accessToken()
+                accessToken: accessToken
             )
             
             #expect(response.content.first!.questionId != pagination.content.first!.questionId)
         }
-        
-        dump(response)
     }
     
     @Test("메인 질문 조회 테스트")
     func fetchMainQuestion() async throws {
-        let response = try await QuestionAPI.fetchMainQuestion(
+        let _ = try await QuestionAPI.fetchMainQuestion(
             server: .test,
             accessToken: TestHelper.accessToken()
         )
-        
-        dump(response)
     }
 }
