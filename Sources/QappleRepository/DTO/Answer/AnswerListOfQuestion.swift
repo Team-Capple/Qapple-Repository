@@ -20,6 +20,7 @@ public struct AnswerListOfQuestion: Decodable, Sendable {
         public let writerId: Int
         public let profileImage: String?
         public let nickname: String
+        public let writerGeneration: String
         public let content: String
         public let isMine: Bool
         public let isReported: Bool
