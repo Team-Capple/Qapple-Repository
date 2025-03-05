@@ -18,6 +18,7 @@ public struct BoardCommentList: Decodable, Sendable {
     public struct Content: Decodable, Sendable {
         public let boardCommentId: Int
         public let writerId: Int
+        public let writerGeneration: String
         public let content: String
         public let heartCount: Int
         public let isLiked: Bool
