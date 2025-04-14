@@ -66,4 +66,19 @@ public enum AnswerAPI: Sendable {
             accessToken: accessToken
         )
     }
+    
+    public static func like(
+        answerId: Int,
+        server: Server,
+        accessToken: String
+    ) async throws -> LikeAnswer {
+        let url = try QappleAPI.Answer.like(answerId: Int64(answerId))
+            .url(from: server)
+        let request = LikeAnswerRequest(answerId: answerId)
+        return try await NetworkService.post(
+            url: url,
+            body: request,
+            accessToken: accessToken
+        )
+    }
 }
