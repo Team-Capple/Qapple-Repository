@@ -33,6 +33,9 @@ enum QappleAPI {
         /// 답변 생성
         case create(questionId: Int64)
         
+        /// 답변 좋아요
+        case like(answerId: Int64)
+        
         var rawValue: RawValue {
             switch self {
             case let .listOfMine(threshold, pageSize):
@@ -52,6 +55,40 @@ enum QappleAPI {
                 
             case let .create(questionId):
                 appending(baseString: "question/\(questionId)")
+                
+            case let .like(answerId):
+                appending(baseString: "\(answerId)/heart")
+            }
+        }
+    }
+    
+    // MARK: - Answer Comment
+    
+    enum AnswerComment: RawRepresentable, API {
+        static let basePath: String = "answer-comments"
+        
+        /// 답변에 대한 댓글 조회
+        case list(answerId: Int64)
+        
+        /// 답변에 대한 댓글 업로드
+        case create(answerId: Int64)
+        
+        /// 답변에 대한 댓글 삭제
+        case delete(answerCommentId: Int64)
+        
+        /// 답변에 대한 댓글 좋아요
+        case like(answerCommentId: Int64)
+        
+        var rawValue: RawValue {
+            switch self {
+            case let .list(answerId: answerId):
+                appending(baseString: "\(answerId)")
+            case let .create(answerId: answerId):
+                appending(baseString: "answer/\(answerId)")
+            case let .delete(answerCommentId: answerCommentId):
+                appending(baseString: "\(answerCommentId)")
+            case let .like(answerCommentId: answerCommentId):
+                appending(baseString: "heart/\(answerCommentId)")
             }
         }
     }
