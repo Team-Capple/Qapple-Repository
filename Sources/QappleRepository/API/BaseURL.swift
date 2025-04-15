@@ -10,6 +10,8 @@ import Foundation
 /// API 호출을 위한 기본 URL 생성 관리
 enum BaseURL {
     
+    class PackageClass {}
+    
     private static let scheme: String = "http"
     
     static func serverKey(_ server: Server) -> String {
@@ -20,13 +22,23 @@ enum BaseURL {
     }
     
     /// 기본 URL을 받아옵니다.
-    static func fetch(from server: Server) -> String {
-        guard let host = ProcessInfo.processInfo.environment[serverKey(server)] else {
-            return "HOST_URL_ERROR"
+    static func fetch(from server: Server) throws -> String {
+        if Bundle.main == Bundle(for: PackageClass.self) {
+            guard let host = Bundle.main.infoDictionary?[serverKey(server)] as? String else {
+                throw RepositoryError.invalidSecretKey("HOST_URL_\(server.rawValue.uppercased())")
+            }
+            guard let port = Bundle.main.infoDictionary?["PORT_NUM"] as? String else {
+                throw RepositoryError.invalidSecretKey("PORT_NUM")
+            }
+            return "\(scheme)://\(host):\(port)"
+        } else {
+            guard let host = ProcessInfo.processInfo.environment[serverKey(server)] else {
+                throw RepositoryError.invalidSecretKey("HOST_URL_\(server.rawValue.uppercased())")
+            }
+            guard let port = ProcessInfo.processInfo.environment["PORT_NUM"] else {
+                throw RepositoryError.invalidSecretKey("PORT_NUM")
+            }
+            return "\(scheme)://\(host):\(port)"
         }
-        guard let port = ProcessInfo.processInfo.environment["PORT_NUM"] else {
-            return "PORT_NUM_ERROR"
-        }
-        return "\(scheme)://\(host):\(port)"
     }
 }

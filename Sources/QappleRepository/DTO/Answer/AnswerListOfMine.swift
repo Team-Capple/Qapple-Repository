@@ -20,6 +20,7 @@ public struct AnswerListOfMine: Decodable, Sendable {
         public let answerId: Int
         public let writerId: Int
         public let nickname: String
+        public let writerGeneration: String
         public let profileImage: String?
         public let content: String
         public let heartCount: Int

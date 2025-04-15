@@ -12,35 +12,25 @@ import Testing
 
 struct AdminQuestionAPITests {
     
-    @Test("Admin 질문 생성 테스트")
+    @Test("Admin 질문 생성 및 삭제 테스트")
     func createQuestion() async throws {
-        let response = try await AdminQuestionAPI.createQuestion(
-            questionStatus: .pending,
-            content: "테스트 질문입니다!",
-            server: .test,
-            accessToken: TestHelper.accessToken()
-        )
-        
-        dump(response)
-    }
-    
-    @Test("Admin 질문 삭제 테스트")
-    func deleteQuestion() async throws {
         let token = try await TestHelper.accessToken()
-        let createResponse = try await AdminQuestionAPI.createQuestion(
+        let _ = try await MemberAPI.roleChange(
+            role: .admin,
+            server: .test,
+            accessToken: token
+        )
+        let createQuestion = try await AdminQuestionAPI.createQuestion(
             questionStatus: .pending,
             content: "테스트 질문입니다!",
             server: .test,
             accessToken: token
         )
-        
-        let deleteResponse = try await AdminQuestionAPI.deleteQuestion(
-            questionId: createResponse.questionId,
+        let _ = try await AdminQuestionAPI.deleteQuestion(
+            questionId: createQuestion.questionId,
             server: .test,
             accessToken: token
         )
-        
-        dump(deleteResponse)
     }
     
 //    @Test("Admin 질문 CSV 파일 업로드 테스트")

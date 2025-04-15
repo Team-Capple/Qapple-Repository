@@ -14,13 +14,11 @@ struct NotificationAPITests {
     
     @Test("알림 리스트 조회 테스트")
     func fetchNotifications() async throws {
-        let response = try await NotificationAPI.fetchNotifications(
+        let _ = try await NotificationAPI.fetchNotifications(
             threshold: nil,
             pageSize: 25,
             server: .test,
             accessToken: TestHelper.accessToken()
         )
-        
-        dump(response)
     }
 }
