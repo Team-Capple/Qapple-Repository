@@ -25,4 +25,7 @@ jobs:
       with:
         tag_name: ${{steps.extract_version_name.outputs.version}}
         release_name: ${{steps.extract_version_name.outputs.version}}
-        body: ${{github.event.pull_request.body}}
+        body: |
+          ## 캐플 레포지토리 v${{steps.extract_version_name.outputs.version}}
+          ### 변경사항
+          ${{github.event.pull_request.body}}
