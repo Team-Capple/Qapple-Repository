@@ -11,7 +11,7 @@ import Foundation
 
 struct AnswerAPITests {
     
-    @Test("답변 생성, 내 답변 확인, 답변 삭제 테스트")
+    @Test("답변 생성, 내 답변 확인, 좋아요, 답변 삭제 테스트")
     func fetchListOfMine() async throws {
         let accessToken = try await TestHelper.accessToken()
         let create = try await AnswerAPI.create(
@@ -26,6 +26,13 @@ struct AnswerAPITests {
             server: .test,
             accessToken: accessToken
         )
+        
+        let _ = try await AnswerAPI.like(
+            answerId: create.answerId,
+            server: .test,
+            accessToken: TestHelper.accessToken()
+        )
+        
         let _ = try await AnswerAPI.delete(
             answerId: create.answerId,
             server: .test,
