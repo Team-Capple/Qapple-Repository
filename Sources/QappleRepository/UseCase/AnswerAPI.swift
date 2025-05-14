@@ -37,7 +37,7 @@ public enum AnswerAPI: Sendable {
     /// 특정 질문에 대한 답변리스트를 조회하는 API입니다.
     public static func fetchListOfQuestion(
         questionId: Int,
-        threshold: String?,
+        threshold: Int?,
         pageSize: Int,
         server: Server,
         accessToken: String

@@ -28,7 +28,7 @@ enum QappleAPI {
         case delete(answerId: Int64)
         
         /// 질문에 대한 답변 조회
-        case listOfQuestion(questionId: Int64, threshold: String?, pageSize: Int32 = 25)
+        case listOfQuestion(questionId: Int64, threshold: Int?, pageSize: Int32 = 25)
         
         /// 답변 생성
         case create(questionId: Int64)

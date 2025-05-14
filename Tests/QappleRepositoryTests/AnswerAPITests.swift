@@ -43,7 +43,7 @@ struct AnswerAPITests {
     @Test("질문에 대한 답변 리스트 테스트")
     func fetchListOfQuestion() async throws {
         let _ = try await AnswerAPI.fetchListOfQuestion(
-            questionId: 1,
+            questionId: 100,
             threshold: nil,
             pageSize: 30,
             server: .test,
