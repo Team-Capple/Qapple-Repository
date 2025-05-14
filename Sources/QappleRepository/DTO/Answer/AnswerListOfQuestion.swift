@@ -24,7 +24,9 @@ public struct AnswerListOfQuestion: Decodable, Sendable {
         public let content: String
         public let isMine: Bool
         public let isReported: Bool
-        public let isLiked: Bool
+        public let isLiked: Bool?
         public let writeAt: String
+        public let commentCount: Int
+        public let heartCount: Int
     }
 }
