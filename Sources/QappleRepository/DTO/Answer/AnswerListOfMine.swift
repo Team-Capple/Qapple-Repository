@@ -24,6 +24,7 @@ public struct AnswerListOfMine: Decodable, Sendable {
         public let profileImage: String?
         public let content: String
         public let heartCount: Int
+        public let commentCount: Int
         public let writeAt: String
         public let isLiked: Bool
     }
