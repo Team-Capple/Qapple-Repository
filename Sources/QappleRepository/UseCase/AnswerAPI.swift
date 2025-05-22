@@ -25,6 +25,7 @@ public enum AnswerAPI: Sendable {
     }
     
     /// 답변 삭제 API 입니다.
+    @discardableResult
     public static func delete(
         answerId: Int,
         server: Server,
@@ -51,6 +52,7 @@ public enum AnswerAPI: Sendable {
     }
     
     /// 답변 생성 API 입니다.
+    @discardableResult
     public static func create(
         content: String,
         questionId: Int,
@@ -67,6 +69,8 @@ public enum AnswerAPI: Sendable {
         )
     }
     
+    /// 답변에 좋아요 추가 or 취소를 하는 API 입니다.
+    @discardableResult
     public static func like(
         answerId: Int,
         server: Server,

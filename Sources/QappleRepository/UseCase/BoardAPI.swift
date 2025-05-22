@@ -25,6 +25,7 @@ public enum BoardAPI {
     }
     
     /// 게시글 생성 API입니다.
+    @discardableResult
     public static func create(
         content: String,
         boardType: CreateBoardRequest.BoardType,
@@ -51,6 +52,7 @@ public enum BoardAPI {
     }
     
     /// 게시글 삭제 API입니다.
+    @discardableResult
     public static func delete(
         boardId: Int,
         server: Server,
@@ -61,6 +63,7 @@ public enum BoardAPI {
     }
     
     /// 게시글 좋아요 및 취소 API입니다.
+    @discardableResult
     public static func like(
         boardId: Int,
         server: Server,
