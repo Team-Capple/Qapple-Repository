@@ -30,6 +30,7 @@ public enum BoardCommentAPI {
     }
     
     /// 게시글 댓글 생성 API입니다.
+    @discardableResult
     public static func create(
         boardId: Int,
         content: String,
@@ -51,6 +52,7 @@ public enum BoardCommentAPI {
     }
     
     /// 게시글 댓글 삭제 API입니다.
+    @discardableResult
     public static func delete(
         commentId: Int,
         server: Server,
@@ -67,6 +69,7 @@ public enum BoardCommentAPI {
     }
     
     /// 게시글 댓글 좋아요 및 취소 API입니다.
+    @discardableResult
     public static func like(
         commentId: Int,
         server: Server,
