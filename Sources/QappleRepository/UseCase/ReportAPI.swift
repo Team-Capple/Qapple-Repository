@@ -11,6 +11,7 @@ import Foundation
 public enum ReportAPI: Sendable {
     
     /// 답변 신고 API입니다.
+    @discardableResult
     public static func reportAnswer(
         answerId: Int,
         reportType: ReportType,
@@ -30,6 +31,7 @@ public enum ReportAPI: Sendable {
     }
     
     /// 게시글 신고 API입니다.
+    @discardableResult
     public static func reportBoard(
         boardId: Int,
         reportType: ReportType,
@@ -48,7 +50,8 @@ public enum ReportAPI: Sendable {
         )
     }
     
-    /// 게시글 신고 API입니다.
+    /// 게시글의 달린 특정 댓글 신고 API입니다.
+    @discardableResult
     public static func reportBoardComment(
         boardCommentId: Int,
         reportType: ReportType,

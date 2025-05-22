@@ -20,6 +20,7 @@ public enum AnswerCommentAPI: Sendable {
     }
     
     /// 특정 답변에 댓글을 생성합니다.
+    @discardableResult
     public static func createAnswerComment(
         answerId: Int,
         content: String,
@@ -33,6 +34,7 @@ public enum AnswerCommentAPI: Sendable {
     }
     
     /// 답변에 있는 특정 댓글을 삭제합니다.
+    @discardableResult
     public static func deleteAnswerComment(
         answerCommentId: Int,
         server: Server,
@@ -44,6 +46,7 @@ public enum AnswerCommentAPI: Sendable {
     }
     
     /// 답변에 있는 특정 댓글에 좋아요 추가 or 취소 합니다.
+    @discardableResult
     public static func likeAnswerComment(
         answerCommentId: Int,
         server: Server,

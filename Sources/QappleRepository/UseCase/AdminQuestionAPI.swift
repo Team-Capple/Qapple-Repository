@@ -12,6 +12,7 @@ import Foundation
  */
 public enum AdminQuestionAPI: Sendable {
     /// 질문을 생성하는 API 입니다.
+    @discardableResult
     public static func createQuestion(
         questionStatus: CreateQuestionRequest.QuestionStatus,
         content: String,
@@ -29,6 +30,7 @@ public enum AdminQuestionAPI: Sendable {
     }
     
     /// 질문을 삭제하는 API 입니다.
+    @discardableResult
     public static func deleteQuestion(
         questionId: Int,
         server: Server,
