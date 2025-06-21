@@ -7,8 +7,8 @@
 
 import Foundation
 
-
 public struct AnswerCommentList: Decodable, Sendable {
+    
     public let answerCommentInfos: [Content]
     
     public struct Content: Decodable, Sendable {
@@ -16,6 +16,8 @@ public struct AnswerCommentList: Decodable, Sendable {
         public let writerId: Int
         public let content: String
         public let heartCount: Int
+        public let isLiked: Bool
+        public let isMine: Bool
         public let createdAt: String
     }
 }
