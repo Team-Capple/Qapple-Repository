@@ -9,7 +9,7 @@ import Foundation
 
 public struct AnswerCommentList: Decodable, Sendable {
     
-    public let answerCommentInfos: [Content]
+    public let content: [Content]
     
     public struct Content: Decodable, Sendable {
         public let answerCommentId: Int
