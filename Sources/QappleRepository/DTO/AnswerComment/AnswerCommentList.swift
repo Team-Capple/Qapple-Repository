@@ -7,15 +7,17 @@
 
 import Foundation
 
-
 public struct AnswerCommentList: Decodable, Sendable {
-    public let answerCommentInfos: [Content]
+    
+    public let content: [Content]
     
     public struct Content: Decodable, Sendable {
         public let answerCommentId: Int
         public let writerId: Int
         public let content: String
         public let heartCount: Int
+        public let isLiked: Bool
+        public let isMine: Bool
         public let createdAt: String
     }
 }
